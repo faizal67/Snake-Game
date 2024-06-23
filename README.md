@@ -1,8 +1,36 @@
-# React + Vite
+# Snake Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Snake Game built with React and Tailwind CSS.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components](#components)
+- [Game Mechanics](#game-mechanics)
+- [Credits](#credits)
+- [License](#license)
+
+## Introduction
+
+This project is a classic Snake Game implemented using React for the frontend logic and Tailwind CSS for styling. The game features a start screen, a game over screen, and smooth snake movement. The snake grows in size when it eats food, and the game ends when the snake collides with itself or the boundaries.
+
+## Features
+
+- Smooth snake movement
+- Start and game over screens
+- Responsive design using Tailwind CSS
+- Randomly generated food items
+- Game state management with React hooks
+
+## Installation
+
+To run this project locally, follow these steps:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/snake-game.git
+   cd snake-game
+

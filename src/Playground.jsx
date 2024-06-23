@@ -84,7 +84,7 @@ const Playground = ({ gameStatus, setScore, endHandler }) => {
 
         return newSnake;
       });
-    }, 100); // Interval time set to 500 milliseconds for slower animation
+    }, 200); // Interval time set to 500 milliseconds for slower animation
 
     return () => clearInterval(intervalId);
   }, [currDir, gameStatus]);
