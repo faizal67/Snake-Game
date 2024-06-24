@@ -1,36 +1,46 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Playground from './Playground'
+import StartCard from './Cards/StartCard'
+import EndCard from './Cards/EndCard'
 
 
 const Button = ({ text, handler, style = '' }) => {
   return <button className={`text-white font-bold border-sky-400 border-2 p-2 ${style}`} onClick={handler}>{text}</button>
 }
 
-const StartCard = ({  startHandler }) => {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg   w-96  h-56 bg-opacity-50">
-        <h2 className="text-5xl font-bold mb-4 text-white">Snake Game</h2>
-        <button
-          onClick={startHandler}
-          className="px-4 py-2 bg-green-500 text-rgb(15 23 42) text-2xl bold rounded hover:bg-green-700 transition"
-        >
-          Start Game
-        </button>
-      </div>
-    </div>
-  );
-};
 
 
 function App() {
+
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+
   const [gameStatus, setGameStatus] = useState(false)
   const [score, setScore] = useState(0);
+  const [isPause, setPause] = useState(false);
   const pauseHandler = () => {
     setGameStatus(false)
+    setPause(true)
+  }
+
+  const resumeHandler = () =>{
+    setGameStatus(true)
+    setPause(false)
   }
   const startHandler = () => {
     setGameStatus(true)
+    setPause(false)
   }
 
   const endHandler = () => {
@@ -39,20 +49,26 @@ function App() {
 
   const reStartHandler = () => {
     setScore(0);
+    setPause(false)
     setGameStatus(true);
   }
-  if(gameStatus == false)
-  return  <StartCard reStartHandler={reStartHandler} startHandler={startHandler} score={score} />
+
+  
+  if(gameStatus == false && score == 0 && isPause == false)
+  return  <StartCard  startHandler={startHandler} />
+  else if(gameStatus == false && score != 0 && isPause == false)
+    return <EndCard reStartHandler={reStartHandler} score={score} />
+  else
   return (
     
-    <div className='m-5'>
-      <Playground gameStatus={gameStatus} endHandler={endHandler} setScore={setScore} />
+    <div className='py-5 px-2'>
+      <div className='border-8 border-green-200 overflow-hi'>
+      <Playground gameStatus={gameStatus} endHandler={endHandler} setScore={setScore} isPause={isPause} score ={score} resumeHandler={resumeHandler} reStartHandler={reStartHandler}/>
+      </div>
+      
       <div className='flex flex-row justify-center content-center'>
-        <div className='mr-5'>
-          <Button text='Start' handler={startHandler} style='mr-5' />
-          <Button text={'Pause'} handler={pauseHandler} />
-        </div>
-        <div className='font-bold text-white'>Score :{score}</div>
+          <Button text={'Pause'} handler={pauseHandler} style='mr-5'/>
+        <div className='font-bold text-white text-4xl'>Score :{score}</div>
       </div>
 
     </div>
