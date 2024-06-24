@@ -1,6 +1,7 @@
 # Snake Game
 
 A simple Snake Game built with React and Tailwind CSS.
+https://faizal67.github.io/Snake-Game/
 
 ## Table of Contents
 
@@ -31,6 +32,13 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/snake-game.git
+   git clone https://github.com/faizal67/Snake-Game.git
    cd snake-game
 
+2. **Install all Dependency:**
+   ```bash
+   npm install
+
+3. **Run:**
+   ```bash
+   npm run dev
